@@ -1,0 +1,48 @@
+##############0. 결론 요약###########################################
+
+r pakage의 for문과 lapply 함수를 이용하여 100이하의 짝수를 합하는 프로세스를 10000번 실행한 결과
+실행소요시간은 lapply 함수를 사용(0.101초)시 for문(0.73초)을 사용하는 것보다 시간을 단축할 수 있었다.
+
+
+
+#############1. for문을 이용해 짝수 sum 10,000번#######################
+
+library(rbenchmark)
+fun1 <- function(n){
+tmp <- 0
+for(i in seq_len(n)){
+tmp <- tmp + 2*i
+}
+return(tmp)
+}
+
+res <- benchmark(fun1(100),replications=100000,
+columns=c("test","elapsed","relative","user.self","sys.self"))
+res
+
+
+##       test elapsed relative user.self sys.self
+##1 fun1(100)    0.73        1      0.72     0.01
+
+
+#############2. lapply 함수를 이용해 짝수 sum 10,000번 ############################
+
+
+start_time <- Sys.time()
+
+
+res1<- replicate(10000, lapply(list (a=1:100*2),sum))
+
+
+
+end_time <- Sys.time()
+elapsed_time <- as.numeric(difftime(time1 = end_time,
+time2 = start_time,
+units = "secs"))
+cat("elapsed time : ",sprintf("%.3f",elapsed_time),"sec",sep="")
+ 
+
+
+## elapsed time : 0.101sec> 
+
+

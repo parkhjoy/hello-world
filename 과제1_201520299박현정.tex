@@ -1,0 +1,132 @@
+\documentclass[10pt]{article}
+
+%% For including figures, graphicx.sty has been loaded in
+%% elsarticle.cls. If you prefer to use the old commands
+%% please give \usepackage{epsfig}
+\usepackage{epsfig}
+
+%% The amssymb package provides various useful mathematical symbols
+%% The amsthm package provides extended theorem environments
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+
+%% The lineno packages adds line numbers. Start line numbering with
+%% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
+%% for the whole article with \linenumbers.
+\usepackage{lineno}
+
+%% extra packages
+\usepackage{kotex}
+\usepackage{color,graphicx}
+\usepackage{hyperref}
+\usepackage{epsfig,fullpage}
+\usepackage{natbib,cite}
+\usepackage{url}
+\usepackage{subfigure}
+\usepackage{soul}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{array,multirow}
+\usepackage{stackrel}
+\usepackage{appendix}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage[onehalfspacing]{setspace}
+
+% if you want to use upper case roman numerals, you have to
+% define followings
+\def\BigRoman{\uppercase\expandafter{\romannumeral\number\count 255 }}
+\def\Romannumeral{\afterassignment\BigRoman\count255=}
+
+
+
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{assumption}{Assumption}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem*{remark}{Remark}
+\newtheorem{proposition}{Proposition}
+
+
+\begin{document}
+\setstretch{1.5}
+
+\title{대학원신입생세미나 과제1}
+
+\author{통계학과 박현정 2015-20299} \date{\today}
+
+\maketitle
+
+\begin{abstract}
+Probability Theory and Examples, Rick durret 교재의 $Theorem 1.6.8$을 정리. 
+\end{abstract}
+
+\section{Mesure theory}
+\subsection{Expected Value} 
+
+
+\begin{theorem}  \label{Definition}
+Suppose $X_{N} \rightarrow X a.s.$ Let g, h be contimuos functions with
+\begin{itemize}
+\item[(i)] $g \geq 0 \; and \; g(x) \rightarrow \infty \; as\; |x|\rightarrow \infty$,
+\item[(ii)] $|h(x)|/g(x) \rightarrow 0 \; as\; |x|\rightarrow \infty$
+and \item[(iii)] $Eg(X_{n})\leq K < \infty \; $for all n.
+
+\end{itemize}
+Then $Eh(X_{n})\rightarrow Eh(X_{n})$.
+
+\begin{proof}
+By subtracting a contrast from $h$, we can suppose without loss of generality that $h(0)\;=\;0$. Pick $M$ large so that $P(|X|\;=\;M)\;0$ and $g(x)>0$ when $|x|\geq M$. Given a random variable Y, let $\bar{Y}=Y1_{(|y|\leq M)}$. Since $P(|X|\;=\;M)\;=\;0, \bar{X_{n}} \rightarrow \bar{X}$ a.s. Since $h(\bar{X_{n}}$ is bounded and h is countinous, it follows from the bounded convergence theorem that 
+
+\begin{itemize}
+\item[(a)]
+$  Eh(\bar{X_{n}})\;\rightarrow\;Eh(\bar{X}) $
+\item[(b)]
+$ |Eh(\bar{Y})-Eh(Y)|\leq E|h(bar{Y})-h(Y)|\leq E(|h(Y)|;|Y|>M)\leq _{\in M}Eg(Y)$
+where $_{\in M} \;=\;\sup\{|h(x)|/g(x) : |x| \geq M\}$.
+To check the second inequality, not that when $|Y|\leq M, Y\;=\;Y$, and we have supposed $h(0)\;=\;0$. The third inequality follows from the definition of $_{\in m}$ .
+\\
+Taking $Y=X_{n}$ in (b) and using ({\romannumeral 3}), it follows that
+\item[(c)] 
+$|Eh(\bar{X_{n}})\;-\;Eh(X_{n})|\leq K_{\in M} $
+\\
+To estimate $|Eh(\bar{X_{n}})\;-\;Eh(X_{n})|$, we observe that $g\geq 0$ and $g$ is continuous, so Fatou's lemma implies
+$$
+Eg(X) \leq \liminf_{n \rightarrow \infty} Eg(X_{n}) \leq K
+$$
+Taking $Y\; = \;X$ in (b) gives
+\item[(d)] 
+$|Eh(\bar{X})\;-\;Eh(X)|\leq K_{\in M} $ \\
+The triangle inequality implies 
+\begin{eqnarray*}
+|Eh(X_{n})\;-\;Eh(X)|  & \leq &  |Eh(X_{n})\;-\;Eh(X)|\\
+&+&|Eh(\bar{X})\;-\;Eh(\bar{X})| + |Eh(\bar{X})\;-\;Eh(X)|
+\end{eqnarray*}
+
+Taking limits and using (a), (c), (d), we have
+$$
+\limsup_{n \rightarrow \infty} |Eh(X_{n}) \;-\; Eh(X)| \leq 2 K_{\in m}
+$$
+which proves the desired result since $K<\infty$ and 
+$_{\in M} \;\rightarrow \; 0$ as $M \rightarrow \infty$.
+
+
+
+\end{itemize}
+
+
+
+
+\end{proof}
+
+\end{theorem}
+
+
+
+
+\end{document}
+
+
+
